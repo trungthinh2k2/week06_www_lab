@@ -1,66 +1,60 @@
-package vn.edu.iuh.fit.week_lab_6.backend.entities;
+package vn.edu.iuh.fit.week_lab_6.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
-@Table(name = "user")
 @Entity
-@Getter
-@Setter
-@ToString
+@Table(name = "user")
+@Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private long id;
-    @Column(name = "firstName", nullable = false, columnDefinition = "varchar(50)")
+    @Column(name = "first_name", columnDefinition = "varchar(50)")
     private String firstName;
-    @Column(name = "middleName", nullable = false, columnDefinition = "varchar(50)")
+    @Column(name = "middle_name", columnDefinition = "varchar(50)")
     private String middleName;
-    @Column(name = "lastName", nullable = false, columnDefinition = "varchar(50)")
+    @Column(name = "last_name", columnDefinition = "varchar(50)")
     private String lastName;
-    @Column(name = "mobile", nullable = false, columnDefinition = "varchar(15)")
+    @Column(name = "mobile", columnDefinition = "varchar(15)")
     private String mobile;
-    @Column(name = "email", nullable = false, columnDefinition = "varchar(50)")
+    @Column(name = "email", columnDefinition = "varchar(50)")
     private String email;
-    @Column(name = "passwordHash", nullable = false, columnDefinition = "varchar(32)")
+    @Column(name = "password_hash", columnDefinition = "varchar(32)")
     private String passwordHash;
-    @Column(name = "registeredAt", nullable = false, columnDefinition = "DATETIME")
-    private LocalDate registeredAt;
-    @Column(name = "lastLogin", nullable = false, columnDefinition = "DATETIME")
-    private LocalDate lastLogin;
-    @Column(columnDefinition = "TINYTEXT")
+    @Column(name = "registered_at", columnDefinition = "DATETIME")
+    private LocalDateTime registeredAt;
+    @Lob
+    @Column(columnDefinition = "text")
     private String intro;
+    @Column(name = "last_login", columnDefinition = "DATETIME")
+    private LocalDateTime lastLogin;
+    @Lob
     @Column(columnDefinition = "text")
     private String profile;
 
-    @OneToMany(mappedBy = "user")
-    private List<Post> posts;
-    @OneToMany(mappedBy = "user")
-    private List<PostComment> postComments;
 
-    public User(String firstName, String middleName, String lastName, String mobile, String email, String passwordHash, LocalDate registeredAt, LocalDate lastLogin, String intro, String profile) {
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<Post> post;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<PostComment> comments;
+
+    public User(String firstName, String middleName, String lastName, String mobile, String email, String passwordHash, String intro, String profile) {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
         this.mobile = mobile;
         this.email = email;
         this.passwordHash = passwordHash;
-        this.registeredAt = registeredAt;
-        this.lastLogin = lastLogin;
+        this.registeredAt = LocalDateTime.now();
         this.intro = intro;
         this.profile = profile;
     }
-
-    public User(long id) {
-        this.id = id;
-    }
-
-    public User() {
-    }
 }
+

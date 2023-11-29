@@ -1,55 +1,50 @@
-package vn.edu.iuh.fit.week_lab_6.backend.entities;
+package vn.edu.iuh.fit.week_lab_6.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
-
 @Entity
-@Getter
-@Setter
-@ToString
+@Getter @Setter
 @Table(name = "post_comment")
+@AllArgsConstructor
+@NoArgsConstructor
 public class PostComment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    private String title;
+    private boolean published;
+    @Lob
+    @Column(columnDefinition = "text")
+    private String content;
+    @Column(name = "published_at", columnDefinition = "DATETIME")
+    private LocalDateTime publishedAt;
+    @Column(name = "created_at", columnDefinition = "DATETIME")
+    private LocalDateTime createdAt;
     @ManyToOne
-    @JoinColumn(name = "postId", referencedColumnName = "id")
+    @JoinColumn(name="post_id")
     private Post post;
     @ManyToOne
-    @JoinColumn(name = "parentId")
-    private PostComment parent;
-    @OneToMany(mappedBy = "parent")
-    private Set<PostComment> posts = new LinkedHashSet<PostComment>();
-    @ManyToOne
-    @JoinColumn(name = "userId", referencedColumnName = "id")
+    @JoinColumn(name="user_id")
     private User user;
-    private String title;
-    @Column(columnDefinition = "TINYINT")
-    private int published;
-    private LocalDate publishedAt;
-    private LocalDate createdAt;
-    private LocalDate updatedAt;
-    private String content;
+    @ManyToOne
+    @JoinColumn(name = "parent_id")
+    private PostComment postComment;
+    @OneToMany(mappedBy = "postComment", cascade = CascadeType.ALL)
+    private Set<PostComment> postComments;
 
-    public PostComment(Post post, PostComment parent, User user, String title, int published, LocalDate publishedAt, LocalDate createdAt, LocalDate updatedAt, String content) {
-        this.post = post;
-        this.parent = parent;
-        this.user = user;
+    public PostComment(String title, String content, LocalDateTime publishedAt, Post post, User user, PostComment postComment) {
         this.title = title;
-        this.published = published;
-        this.publishedAt = publishedAt;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.published = true;
         this.content = content;
-    }
-
-    public PostComment() {
-
+        this.publishedAt = publishedAt;
+        this.createdAt = LocalDateTime.now();
+        this.post = post;
+        this.user = user;
+        this.postComment = postComment;
     }
 }

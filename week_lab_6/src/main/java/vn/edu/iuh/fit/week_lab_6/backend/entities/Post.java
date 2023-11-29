@@ -1,62 +1,58 @@
-package vn.edu.iuh.fit.week_lab_6.backend.entities;
+package vn.edu.iuh.fit.week_lab_6.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
-
 @Entity
 @Table(name = "post")
-@Getter
-@Setter
-@ToString
+@Getter @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @ManyToOne
-    @JoinColumn(name = "authorId")
-    private User user;
-    private String title;
-    @ManyToOne
-    @JoinColumn(name = "parentId")
-    private Post parent;
-    private String metaTitle;
-    @Column(columnDefinition = "TINYTEXT")
-    private String summary;
-    @Column(columnDefinition = "TINYINT")
-    private int published;
-    private LocalDate createdAt;
-    private LocalDate updatedAt;
-    private LocalDate publishedAt;
+    @Lob
     @Column(columnDefinition = "TEXT")
     private String content;
-    @OneToMany(mappedBy = "parent")
-    private Set<Post> posts = new LinkedHashSet<Post>();
+    @Column(name = "created_at", columnDefinition = "DATETIME")
+    private LocalDateTime createdAt;
+    @Column(name = "meta_title", columnDefinition = "varchar(100)")
+    private String metaTitle;
+    private boolean published;
+    @Column(name = "published_at")
+    private LocalDateTime publishedAt;
+    @Column(columnDefinition = "TINYTEXT")
+    private String summary;
+    private String title;
+    @Column(name = "update_at", columnDefinition = "DATETIME")
+    private LocalDateTime updatedAt;
+    @ManyToOne
+    @JoinColumn(name="author_id")
+    private User user;
+    @ManyToOne
+    @JoinColumn(name = "parent_id")
+    private Post post;
+
     @OneToMany(mappedBy = "post")
-    private List<PostComment> postComments;
+    private Set<Post> posts;
+    @OneToMany(mappedBy = "post")
+    private Set<PostComment> postComments;
 
-    public Post(User user, String title, String metaTitle, String summary, int published, LocalDate createdAt, LocalDate updatedAt, LocalDate publishedAt, String content) {
-        this.user = user;
-        this.title = title;
-        this.metaTitle = metaTitle;
-        this.summary = summary;
-        this.published = published;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.publishedAt = publishedAt;
+    public Post(String content, String metaTitle, LocalDateTime publishedAt, String summary, String title, LocalDateTime updatedAt, User user, Post post) {
         this.content = content;
-    }
-
-    public Post() {
-    }
-
-    public Post(long id) {
-        this.id = id;
+        this.createdAt = LocalDateTime.now();
+        this.metaTitle = metaTitle;
+        this.published = true;
+        this.publishedAt = publishedAt;
+        this.summary = summary;
+        this.title = title;
+        this.updatedAt = updatedAt;
+        this.user = user;
+        this.post = post;
     }
 }
