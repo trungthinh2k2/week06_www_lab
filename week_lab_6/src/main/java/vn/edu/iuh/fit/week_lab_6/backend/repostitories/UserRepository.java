@@ -1,8 +1,8 @@
-package vn.edu.iuh.fit.week_lab_6.repostitories;
+package vn.edu.iuh.fit.week_lab_6.backend.repostitories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import vn.edu.iuh.fit.week_lab_6.entities.User;
+import vn.edu.iuh.fit.week_lab_6.backend.entities.User;
 
 import java.util.List;
 

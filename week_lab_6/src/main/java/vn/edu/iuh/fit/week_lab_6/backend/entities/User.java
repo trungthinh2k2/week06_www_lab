@@ -1,10 +1,9 @@
-package vn.edu.iuh.fit.week_lab_6.entities;
+package vn.edu.iuh.fit.week_lab_6.backend.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Set;
 
 @Entity

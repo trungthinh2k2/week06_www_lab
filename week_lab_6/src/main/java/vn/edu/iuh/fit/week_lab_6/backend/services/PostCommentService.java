@@ -1,9 +1,9 @@
-package vn.edu.iuh.fit.week_lab_6.services;
+package vn.edu.iuh.fit.week_lab_6.backend.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import vn.edu.iuh.fit.week_lab_6.entities.PostComment;
-import vn.edu.iuh.fit.week_lab_6.repostitories.PostCommentRepository;
+import vn.edu.iuh.fit.week_lab_6.backend.entities.PostComment;
+import vn.edu.iuh.fit.week_lab_6.backend.repostitories.PostCommentRepository;
 
 import java.util.List;
 

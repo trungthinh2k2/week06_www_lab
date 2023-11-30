@@ -1,4 +1,4 @@
-package vn.edu.iuh.fit.week_lab_6.controllers;
+package vn.edu.iuh.fit.week_lab_6.backend.controllers;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,10 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import vn.edu.iuh.fit.week_lab_6.entities.PostComment;
-import vn.edu.iuh.fit.week_lab_6.entities.User;
-import vn.edu.iuh.fit.week_lab_6.repostitories.PostCommentRepository;
-import vn.edu.iuh.fit.week_lab_6.repostitories.PostRepository;
+import vn.edu.iuh.fit.week_lab_6.backend.entities.PostComment;
+import vn.edu.iuh.fit.week_lab_6.backend.entities.User;
+import vn.edu.iuh.fit.week_lab_6.backend.repostitories.PostCommentRepository;
+import vn.edu.iuh.fit.week_lab_6.backend.repostitories.PostRepository;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

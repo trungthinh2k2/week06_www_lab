@@ -1,4 +1,4 @@
-package vn.edu.iuh.fit.week_lab_6.services;
+package vn.edu.iuh.fit.week_lab_6.backend.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -6,8 +6,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import vn.edu.iuh.fit.week_lab_6.entities.Post;
-import vn.edu.iuh.fit.week_lab_6.repostitories.PostRepository;
+import vn.edu.iuh.fit.week_lab_6.backend.entities.Post;
+import vn.edu.iuh.fit.week_lab_6.backend.repostitories.PostRepository;
 
 import java.util.List;
 @Service

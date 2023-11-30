@@ -1,4 +1,4 @@
-package vn.edu.iuh.fit.week_lab_6.services;
+package vn.edu.iuh.fit.week_lab_6.backend.services;
 
 import org.springframework.stereotype.Service;
 
