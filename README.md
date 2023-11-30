@@ -14,7 +14,11 @@
 ![Infor](https://github.com/trungthinh2k2/week06_www_lab/assets/89030667/a84a61cf-39f8-4290-9fad-59d5b17108a5)
 ### 7.Lưu thời gian khi đăng kí và đăng xuất
 ![Logout](https://github.com/trungthinh2k2/week06_www_lab/assets/89030667/959554f7-c920-4985-94e2-93a997223fb4)
-
+## II. Các công cụ sử dụng 
+ * IDE : IntelliJ
+ * Framework: Spring boot
+ * Web server: Tomcat
+ * Database server: MySQL
 
 
 
